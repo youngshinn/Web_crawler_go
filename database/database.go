@@ -21,9 +21,13 @@ type News struct {
 var DB *gorm.DB
 
 func ConnectDB() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("❌ .env 파일 로드 실패")
+	// 👉 환경 변수를 보고 개발환경일 때만 .env 로드
+	if os.Getenv("ENV") != "production" {
+		if err := godotenv.Load(); err != nil {
+			log.Println("📌 .env 파일을 찾을 수 없습니다. 무시하고 계속 진행합니다.")
+		} else {
+			log.Println("✅ .env 파일 로드 성공")
+		}
 	}
 
 	user := os.Getenv("DB_USER")

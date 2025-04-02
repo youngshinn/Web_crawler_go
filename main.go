@@ -3,12 +3,11 @@ package main
 
 import (
 	"fmt"
+	"goproject/database"
+	"goproject/webcrawler"
 	"os"
 	"strconv"
 	"sync"
-
-	"goproject/database"
-	"goproject/webcrawler"
 )
 
 func main() {
