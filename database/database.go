@@ -24,9 +24,9 @@ func ConnectDB() {
 	// 👉 환경 변수를 보고 개발환경일 때만 .env 로드
 	if os.Getenv("ENV") != "production" {
 		if err := godotenv.Load(); err != nil {
-			log.Println("📌 .env 파일을 찾을 수 없습니다. 무시하고 계속 진행합니다.")
+			log.Println(" .env 파일을 찾을 수 없습니다. 무시하고 계속 진행합니다.")
 		} else {
-			log.Println("✅ .env 파일 로드 성공")
+			log.Println(" .env 파일 로드 성공")
 		}
 	}
 
@@ -40,7 +40,7 @@ func ConnectDB() {
 	dsnRoot := fmt.Sprintf("%s:%s@tcp(%s:%s)/?charset=utf8mb4&parseTime=True&loc=Local", user, pass, host, port)
 	rootDB, err := gorm.Open(mysql.Open(dsnRoot), &gorm.Config{})
 	if err != nil {
-		log.Fatal("❌ MySQL 루트 연결 실패:", err)
+		log.Fatal(" MySQL 루트 연결 실패:", err)
 	}
 
 	rootDB.Exec(fmt.Sprintf("CREATE DATABASE IF NOT EXISTS %s", name))
@@ -49,16 +49,16 @@ func ConnectDB() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, pass, host, port, name)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("❌ DB 연결 실패:", err)
+		log.Fatal(" DB 연결 실패:", err)
 	}
 	DB = db
 
 	err = DB.AutoMigrate(&News{})
 	if err != nil {
-		log.Fatal("❌ 테이블 생성 실패:", err)
+		log.Fatal(" 테이블 생성 실패:", err)
 	}
 
-	fmt.Println("✅ DB 연결 및 테이블 준비 완료")
+	fmt.Println(" DB 연결 및 테이블 준비 완료")
 }
 
 // 크롤링한 데이터를 MySQL에 저장하는 함수
