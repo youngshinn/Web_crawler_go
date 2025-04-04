@@ -14,7 +14,7 @@ spec:
               image: shin1031/web-crawler-go:latest
               envFrom:
                 - configMapRef:
-                    name: crwaler-args-config
+                    name: crawler-args-config
                 - secretRef:
                     name: db-secret
               args:
