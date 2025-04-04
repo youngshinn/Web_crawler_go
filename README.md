@@ -133,6 +133,15 @@ spec:
 ---
 ---
 
+## 실행 화면
+![Image](https://github.com/user-attachments/assets/08004933-455c-4ab8-b763-4ab9b0bda0d4)
+
+![Image](https://github.com/user-attachments/assets/36cdb68c-b29b-49c5-8381-3b5a79fcbf82)
+
+![Image](https://github.com/user-attachments/assets/28f0ecaa-b718-4ee2-ae1d-7dde68f02eda)
+
+---
+
 ## 향후 확장 아이디어
 
 - 크롤링 결과를 시각화하는 **대시보드** 구축
