@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: crawler-cronjob
+  namespace: default 
 spec:
   schedule: "*/10 * * * *"  # 매 시간마다 실행
   jobTemplate:
