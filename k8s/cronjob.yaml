@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: crawler-cronjob
 spec:
-  schedule: "*/10* * * *"  # 매 시간마다 실행
+  schedule: "*/10 * * * *"  # 매 시간마다 실행
   jobTemplate:
     spec:
       template:
