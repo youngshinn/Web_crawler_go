@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crawler-args-config
+  namespace: default
+data:
+  ARG1: "인공지능"
+  ARG2: "1"

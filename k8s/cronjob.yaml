@@ -13,9 +13,13 @@ spec:
             - name: web-crawler
               image: shin1031/web-crawler-go:latest
               envFrom:
+                - configMapRef:
+                    name: crwaler-args-config
                 - secretRef:
                     name: db-secret
-              args: ["인공지능", "1"]
+              args:
+                - "$(ARG1)"
+                - "$(ARG2)" 
           restartPolicy: OnFailure
       backoffLimit: 3
       successfulJobsHistoryLimit: 3
