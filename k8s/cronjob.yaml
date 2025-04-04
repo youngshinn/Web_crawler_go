@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: crawler-cronjob
+  namespace: argocd
+spec:
+  schedule: "0 * * * *"  # 매 시간마다 실행
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: web-crawler
+              image: shin1031/web-crawler-go:latest
+              envFrom:
+                - secretRef:
+                    name: db-secret
+              args: ["인공지능", "3"]
+          restartPolicy: OnFailure
+      backoffLimit: 3
+      successfulJobsHistoryLimit: 3
+      failedJobsHistoryLimit: 1
