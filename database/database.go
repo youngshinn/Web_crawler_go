@@ -13,7 +13,7 @@ import (
 type News struct {
 	ID        uint   `gorm:"primaryKey"`
 	Title     string `gorm:"size:255;not null"`
-	Link      string `gorm:"type:text;not null"`
+	Link      string `gorm:"type:text;not null,uniqueIndex"`
 	Keyword   string `gorm:"size:100;not null"`
 	CreatedAt int64  `gorm:"autoCreateTime"`
 }
@@ -63,11 +63,18 @@ func ConnectDB() {
 
 // 크롤링한 데이터를 MySQL에 저장하는 함수
 func SaveNews(title, link, keyword string) {
-	news := News{Title: title, Link: link, Keyword: keyword}
-	result := DB.Create(&news)
+	news := News{Link: link}
+	result := DB.Where("link = ?", link).First(&news)
 
-	if result.Error != nil {
-		log.Println("❌ 데이터 저장 실패:", result.Error)
+	if result.RowsAffected == 0 {
+		news.Title = title
+		news.Keyword = keyword
+		if err := DB.Create(&news).Error; err != nil {
+			log.Println(" 데이터 저장 실패:", err)
+		} else {
+			fmt.Println(" 데이터 저장 완료:", title)
+		}
+	} else {
+		fmt.Println(" 이미 존재하는 뉴스입니다. 중복 저장하지 않음:", title)
 	}
-	fmt.Println("📝 데이터 저장 완료:", title)
 }
