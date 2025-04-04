@@ -4,7 +4,7 @@ metadata:
   name: crawler-cronjob
   namespace: argocd
 spec:
-  schedule: "0 * * * *"  # 매 시간마다 실행
+  schedule: "*/1 * * * *"  # 매 시간마다 실행
   jobTemplate:
     spec:
       template:
@@ -15,7 +15,7 @@ spec:
               envFrom:
                 - secretRef:
                     name: db-secret
-              args: ["인공지능", "3"]
+              args: ["인공지능", "1"]
           restartPolicy: OnFailure
       backoffLimit: 3
       successfulJobsHistoryLimit: 3
