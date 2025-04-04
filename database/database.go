@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -11,17 +12,17 @@ import (
 )
 
 type News struct {
-	ID        uint   `gorm:"primaryKey"`
-	Title     string `gorm:"size:255;not null"`
-	Link      string `gorm:"type:text;not null,uniqueIndex"`
-	Keyword   string `gorm:"size:100;not null"`
-	CreatedAt int64  `gorm:"autoCreateTime"`
+	ID        uint      `gorm:"primaryKey"`
+	Title     string    `gorm:"size:255;not null"`
+	Link      string    `gorm:"type:text;not null,uniqueIndex"`
+	Keyword   string    `gorm:"size:100;not null"`
+	CreatedAt time.Time `gorm:"autoCreateTime"` // Gorm이 자동으로 시간 설정
 }
 
 var DB *gorm.DB
 
 func ConnectDB() {
-	// 👉 환경 변수를 보고 개발환경일 때만 .env 로드
+	//  환경 변수를 보고 개발환경일 때만 .env 로드
 	if os.Getenv("ENV") != "production" {
 		if err := godotenv.Load(); err != nil {
 			log.Println(" .env 파일을 찾을 수 없습니다. 무시하고 계속 진행합니다.")
