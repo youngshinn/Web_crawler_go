@@ -1,16 +1,14 @@
 
 ---
 
-## ✅ 개선된 포트폴리오 스타일 `README.md`
 
-```markdown
-# 🕷️ Go Web Crawler with Kubernetes Automation
+#  Go Web Crawler with Kubernetes Automation
 
-> **주제**: Go 언어로 작성된 뉴스 웹 크롤러를 Kubernetes 환경에서 주기적으로 실행하여 MySQL DB에 저장하는 자동화 시스템 구축
+ **주제**: Go 언어로 작성된 뉴스 웹 크롤러를 Kubernetes 환경에서 주기적으로 실행하여 MySQL DB에 저장하는 자동화 시스템 구축
 
 ---
 
-##  프로젝트 개요
+## 프로젝트 개요
 
 - **크롤링 대상**: 네이버 뉴스 (검색 키워드 기반)
 - **개발 언어**: Go
