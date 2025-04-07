@@ -14,7 +14,7 @@ func main() {
 	database.ConnectDB()
 
 	if len(os.Args) < 3 {
-		fmt.Println("사용법: go run main.go <키워드> <페이지 수>")
+		fmt.Println("사용법! : go run main.go <키워드> <페이지 수>")
 		return
 	}
 

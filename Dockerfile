@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY . .
 
-# 🔥 여기서 실행 파일 이름을 webcrawler ❌ → crawler-app ✅
+# 
 RUN go build -o crawler-app .
 
 # Stage 2: Runtime
